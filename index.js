@@ -1,1 +1,1 @@
-require('./src/getProfile');
+require('./src/server');
