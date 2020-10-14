@@ -2,12 +2,15 @@ const express = require('express');
 const cors = require('cors');
 //const config = require('./config');
 const { user } = require('./helper');
+const { game } = require('./helper');
 
 const app = express();
 
 app.use(cors());
 
 app.get('/user/:id', user);
+
+app.get('/game/:id', game);
 
 app.get('*', (request, response) => {
   response.status(404).send('Route not found');
