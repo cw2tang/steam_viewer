@@ -13,6 +13,6 @@ app.get('*', (request, response) => {
   response.status(404).send('Route not found');
 });
 
-app.listen(config.port, () => {
+/*app.listen(config.port, () => {
   console.log(`Node-server start to listen on port ${config.port}..`);
-});
+});*/
