@@ -1,5 +1,6 @@
 const requestPromise = require('request-promise');
 const jsdom = require('jsdom');
+const request = require('request');
 
 async function fetchUserIndexPage(gameId) {
     const idBasedUrl = `https://store.steampowered.com/api/appdetails?appids=${gameId}`;
@@ -15,30 +16,19 @@ async function fetchUserIndexPage(gameId) {
 
 async function gameMiddleware(request, response) {
     const gameId = request.params.id;
-  
-    // error_ctn
-    try {
-      const html = await fetchUserIndexPage(gameId);
 
-      jsdom.env(
-        html,
-        ['https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'],
-        async function(err, window) {
-          const $ = window.$;
-          const document = window.document;
+    const fetch = require('node-fetch');
 
-          // Response is JSON
-          response.json({
-            gameId,
-          });
-        }
-      );
-    } catch (err) {
-      console.error(err);
-      response.status(400).json({
-        error: 'unknown error'
-      });
-    }
+    let url = await fetchUserIndexPage(gameId);
+    
+    let settings = { method: "Get" };
+    
+    fetch(url, settings)
+        .then(res => res.json())
+        .then((json) => {
+            // do something with JSON
+    });
+
   }
   
   module.exports = gameMiddleware;
