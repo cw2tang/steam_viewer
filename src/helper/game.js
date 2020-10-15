@@ -21,6 +21,7 @@ async function gameMiddleware(request, response) {
     const gameId = request.params.id;
 
     let url = await fetchUserIndexPage(gameId);
+    url = 'https://store.steampowered.com/api/appdetails?appids=1073123';
 
     let options = {json: true};
 
