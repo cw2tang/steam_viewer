@@ -12,7 +12,7 @@ async function fetchUserIndexPage(gameId) {
     return html;
 }
 
-async function userMiddleware(request, response) {
+async function gameMiddleware(request, response) {
     const gameId = request.params.id;
   
     // error_ctn
