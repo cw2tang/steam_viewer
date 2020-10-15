@@ -11,3 +11,23 @@ async function fetchUserIndexPage(gameId) {
   
     return html;
 }
+
+async function userMiddleware(request, response) {
+    const gameId = request.params.id;
+  
+    // error_ctn
+    try {
+      const html = await fetchUserIndexPage(gameId);
+  
+      // Passing HTML string into JSDOM
+
+    } catch (err) {
+      console.error(err);
+      response.status(400).json({
+        error: 'unknown error'
+      });
+    }
+  }
+  
+  module.exports = gameMiddleware;
+  
