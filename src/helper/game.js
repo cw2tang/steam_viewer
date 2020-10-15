@@ -18,6 +18,7 @@ async function gameMiddleware(request, response) {
     // error_ctn
     try {
       const html = await fetchUserIndexPage(gameId);
+      response.json(response);
   
       // Passing HTML string into JSDOM
 
