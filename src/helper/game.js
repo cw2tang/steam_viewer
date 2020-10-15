@@ -17,6 +17,25 @@ async function fetchUserIndexPage(gameId) {
 async function gameMiddleware(request, response) {
     const gameId = request.params.id;
 
+    const request = require('request');
+
+    let url = await fetchUserIndexPage(gameId);
+
+    let options = {json: true};
+
+
+
+    request(url, options, (error, res, body) => {
+        if (error) {
+            return  console.log(error)
+        };
+
+        if (!error && res.statusCode == 200) {
+            // do something with JSON, using the 'body' variable
+        };
+    });
+    
+    /*
     const fetch = require('node-fetch');
 
     let url = await fetchUserIndexPage(gameId);
@@ -27,8 +46,9 @@ async function gameMiddleware(request, response) {
         .then(res => res.json())
         .then((json) => {
             // do something with JSON
+            response.json(gameId);
     });
-
+    */
   }
   
   module.exports = gameMiddleware;
